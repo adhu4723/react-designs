@@ -12,32 +12,32 @@ export default function ImageGallery() {
   const [selectedImage, setSelectedImage] = useState(images[1]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-neutral-100 p-10">
-      <div className="flex gap-4">
-        {/* Left side thumbnails */}
-        <div className="flex flex-col gap-4">
-          {images.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt={`thumbnail-${idx}`}
-              onClick={() => setSelectedImage(img)}
-              className={`w-20 h-20 cursor-pointer rounded-md object-cover transition-transform duration-200 hover:scale-135 border-2 ${
-                selectedImage === img ? "border-blue-500" : "border-transparent"
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Right side large image */}
-        <div className="w-[500px] h-[500px] rounded-md overflow-hidden shadow-lg">
+    <div className="flex min-h-screen items-center justify-center bg-neutral-100 p-5">
+    <div className="flex flex-col-reverse md:flex-row gap-4">
+      {/* Thumbnails - move below on small screens */}
+      <div className="flex md:flex-col gap-4 justify-center">
+        {images.map((img, idx) => (
           <img
-            src={selectedImage}
-            alt="Selected furniture"
-            className="w-full h-full object-contain"
+            key={idx}
+            src={img}
+            alt={`thumbnail-${idx}`}
+            onClick={() => setSelectedImage(img)}
+            className={`w-20 h-20 cursor-pointer rounded-md object-cover transition-transform duration-200 hover:scale-105 border-2 ${
+              selectedImage === img ? "border-blue-500" : "border-transparent"
+            }`}
           />
-        </div>
+        ))}
+      </div>
+
+      {/* Main Image */}
+      <div className="w-full md:w-[400px] h-[300px] md:h-[500px] rounded-md overflow-hidden ">
+        <img
+          src={selectedImage}
+          alt="Selected furniture"
+          className="w-full h-full object-contain"
+        />
       </div>
     </div>
+  </div>
   );
 }
