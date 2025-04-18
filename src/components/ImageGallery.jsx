@@ -15,7 +15,7 @@ export default function ImageGallery() {
     <div className="flex min-h-screen items-center justify-center bg-neutral-100 p-5">
     <div className="flex flex-col-reverse md:flex-row gap-4">
       {/* Thumbnails - move below on small screens */}
-      <div className="flex md:flex-col gap-4 justify-center">
+      <div className="flex flex-wrap md:flex-col gap-4 justify-center">
         {images.map((img, idx) => (
           <img
             key={idx}
