@@ -1,21 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
-import ImageGallery from './components/ImageGallery'
-import ProductCard from './components/ProductCard'
-import HomeCarousel from './components/HomeCarousel'
-import HomeCarousel2 from './components/HomeCarousel2'
+
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Shop from './pages/Shop'
+import Navbar from './layout/Navbar'
+import Footer from './layout/Footer'
+import ProductDetails from './pages/ProductDetails'
+import ScrollToTop from './components/ScrollToTop'
+import Layout from './layout/Layout'
+import NotFound from './pages/NotFound'
+import Checkout from './pages/Checkout'
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <ImageGallery />
-      <ProductCard/>
-      {/* <HomeCarousel/> */}
-      <HomeCarousel2/>
+   
+    <ScrollToTop/>
+      <Routes>
+        <Route element={<Layout/>}>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/shop' element={<Shop />}></Route>
+        <Route path='/product/:id' element={<ProductDetails />}></Route>
+        <Route path='/*' element={<NotFound />}></Route>
+        <Route path='/checkout' element={<Checkout />}></Route>
+
+        </Route>
+      </Routes>
+      
+      
     </>
   )
 }

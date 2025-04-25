@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
 import { FaArrowRight } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import bedroom from '../assets/Rectangle24.png';
+import livingroom from '../assets/Rectangle25.png';
+
 
 function HomeCarousel2() {
-  const [slides, setSlides] = useState([
+  const slidesData = [
     {
-      img: "https://wvxxlssoccbctxspmtyy.supabase.co/storage/v1/object/public/products/public/6d9b7ae2-0083-4e4c-bd04-3e96720a571c.jpeg",
+      img: bedroom,
       title: "01-Bed Room",
       subtitle: "Inner Peace"
     },
     {
-      img: "https://wvxxlssoccbctxspmtyy.supabase.co/storage/v1/object/public/products/public/ca7cc203-8fb7-496f-97bb-e7d02137145a.jpeg",
+      img: livingroom,
       title: "02-Living Room",
       subtitle: "Cozy Minimalism"
     },
     {
-      img: "https://wvxxlssoccbctxspmtyy.supabase.co/storage/v1/object/public/products/public/ec98621d-10b6-4e4a-b665-146481c14b0f.jpeg",
+      img: livingroom,
       title: "03-Workspace",
       subtitle: "Creative Corner"
     }
-  ]);
+  ];
+
+  const [slides, setSlides] = useState(slidesData);
+  const [currentKey, setCurrentKey] = useState(0);
 
   const handleNext = () => {
-    // Rotate the first slide to the end
     const updated = [...slides.slice(1), slides[0]];
     setSlides(updated);
+    setCurrentKey(prev => prev + 1); // force re-render for animation
   };
 
   return (
@@ -34,10 +41,22 @@ function HomeCarousel2() {
         <button className='bg-[#B88E2F] px-4 py-1 text-white'>Explore More</button>
       </div>
 
-      <div className='flex flex-wrap lg:flex-nowrap gap-2 '>
+      <div className='flex flex-wrap lg:flex-nowrap gap-2'>
         {/* Main Image */}
-        <div className='h-[400px] w-[800px] relative'>
-          <img className='h-[400px] w-full' src={slides[0].img} alt="" />
+        <div className='h-[400px] w-[800px] relative overflow-hidden'>
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentKey}
+              src={slides[0].img}
+              initial={{ x: 300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -300, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className='h-[400px] w-full absolute top-0 left-0 object-cover'
+            />
+          </AnimatePresence>
+
+          {/* Text and Arrow */}
           <div className='flex absolute bottom-5 left-5 items-end'>
             <div className='bg-white flex py-7 w-[250px] px-5'>
               <div>
@@ -57,15 +76,15 @@ function HomeCarousel2() {
         {/* Side Thumbnails */}
         <div>
           <div className='flex mb-5 gap-2 overflow-hidden'>
-            <img className='h-[350px]' src={slides[1].img} alt="" />
-            <img className='h-[350px]' src={slides[2].img} alt="" />
+            <img className='h-[350px] hidden lg:block opacity-50' src={slides[1].img} alt="" />
+            <img className='h-[350px] hidden lg:block' src={slides[2].img} alt="" />
           </div>
           <div className='flex gap-2'>
-            <span className='px-1 py-1  border border-[#B88E2F] rounded-full'>
-              <span className='px-2  rounded-full bg-[#B88E2F]'></span>
+            <span className='px-1 py-1 border border-[#B88E2F] rounded-full'>
+              <span className='px-2 rounded-full bg-[#B88E2F]'></span>
             </span>
-            <span className='px-1 py-1   rounded-full'>
-              <span className='px-2  rounded-full bg-[#D8D8D8]'></span>
+            <span className='px-1 py-1 rounded-full'>
+              <span className='px-2 rounded-full bg-[#D8D8D8]'></span>
             </span>
           </div>
         </div>
