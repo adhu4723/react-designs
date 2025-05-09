@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const OrderSummary = () => {
   const [paymentMethod, setPaymentMethod] = useState("bank");
    const {cartItems,removeFromCart}=useCart()
    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+   const navigate =useNavigate()
 
   return (
     <div className="max-w-xl mx-auto px-4 py-8 space-y-6 bg-white">
@@ -81,6 +83,7 @@ const OrderSummary = () => {
       {/* Place Order Button */}
       <button
         type="submit"
+        onClick={()=>navigate('/thankyou')}
         className="w-full py-3 border border-black rounded-md text-lg font-medium hover:bg-black hover:text-white transition"
       >
         Place order

@@ -12,6 +12,11 @@ import ScrollToTop from './components/ScrollToTop'
 import Layout from './layout/Layout'
 import NotFound from './pages/NotFound'
 import Checkout from './pages/Checkout'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import ProtectedRoute from './components/ProtectedRoute'
+import ThankYouPage from './pages/ThankYouPage'
+import OrderConfirmedPage from './pages/ThankYouPage'
 
 
 function App() {
@@ -27,7 +32,12 @@ function App() {
         <Route path='/shop' element={<Shop />}></Route>
         <Route path='/product/:id' element={<ProductDetails />}></Route>
         <Route path='/*' element={<NotFound />}></Route>
+        <Route element={<ProtectedRoute/>}>
         <Route path='/checkout' element={<Checkout />}></Route>
+        <Route path='/thankyou' element={<OrderConfirmedPage />}></Route>
+        </Route>
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
 
         </Route>
       </Routes>

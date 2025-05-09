@@ -46,7 +46,7 @@ function CartPanel({ isOpen, onClose }) {
                 <Link to={`/product/${item.sku}`} className="font-semibold">{item.name}</Link>
                 <p className="text-sm">
                   {item.quantity} ×{' '}
-                  <span className="text-amber-700 font-semibold">Rs. {item.price.toLocaleString()}</span>
+                  <span className="text-amber-700 font-semibold">Rs. {item?.price.toLocaleString()}</span>
                 </p>
               </div>
               <button onClick={() => removeFromCart(item.id)} className="text-gray-500 hover:text-red-500">
@@ -58,7 +58,7 @@ function CartPanel({ isOpen, onClose }) {
 
         <div className="flex justify-between items-center mt-10 font-semibold text-lg">
           <span>Subtotal</span>
-          <span className="text-amber-700">Rs. {subtotal.toLocaleString()}</span>
+          <span className="text-amber-700">Rs. {subtotal?.toLocaleString()}</span>
         </div>
 
         <div className="flex justify-between gap-2 mt-6">

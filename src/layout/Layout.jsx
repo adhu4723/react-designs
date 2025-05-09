@@ -11,7 +11,7 @@ function Layout() {
   return (
     <div className="flex flex-col min-h-screen relative">
       <Navbar onCartClick={() => setIsCartOpen(true)} />
-      <main className="flex-grow my-5">
+      <main className="flex-grow my-5 ">
         <Outlet />
       </main>
       <FeatureIcons/>

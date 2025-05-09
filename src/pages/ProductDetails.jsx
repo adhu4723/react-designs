@@ -31,7 +31,7 @@ function ProductDetails() {
     return (
         <div className='space-y-4 px-3'>
             <Breadcrumb2 product={productdatabyid?.name || ''} />
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
                 <ImageGallery image={productdatabyid?.image_path} />
                 <div className='space-y-4'>
                     <h1 className='font-bold text-4xl'>{productdatabyid?.name || ''}</h1>
@@ -65,9 +65,10 @@ function ProductDetails() {
                     </div>
 
                     <hr className='text-gray-200' />
+                    <UnderlineTabs />
                 </div>
             </div>
-            <UnderlineTabs />
+           
             <RelatedProduct />
         </div>
     )
